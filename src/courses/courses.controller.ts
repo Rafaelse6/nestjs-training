@@ -8,33 +8,35 @@ import {
   Post,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Controller('courses')
 export class CoursesController {
-  constructor(private readonly courseService: CoursesService) {}
+  constructor(private readonly coursesService: CoursesService) {}
 
   @Get()
   findAll() {
-    return this.courseService.findAll();
+    return this.coursesService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.courseService.findOne(id);
+    return this.coursesService.findOne(id);
   }
 
   @Post()
-  create(@Body() body) {
-    return this.courseService.create(body);
+  create(@Body() createCourseDto: CreateCourseDto) {
+    return this.coursesService.create(createCourseDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body) {
-    return this.courseService.update(id, body);
+  update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
+    return this.coursesService.update(id, UpdateCourseDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.courseService.remove(id);
+    return this.coursesService.remove(id);
   }
 }
