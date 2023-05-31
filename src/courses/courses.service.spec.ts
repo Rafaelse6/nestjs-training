@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CoursesService } from './courses.service';
 import { Connection, Repository } from 'typeorm';
+import { NotFoundException } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Course } from './entities/course.entity';
 import { Tag } from './entities/tag.entity';
@@ -46,7 +47,17 @@ describe('CoursesService', () => {
         const course = await service.findOne(courseId);
         expect(course).toEqual(expectedCourse);
       });
-      //it('should return NotFoundException', () => {});
+      it('should return NotFoundException', async () => {
+        const courseId = '1';
+        courseRepository.findOne.mockReturnValue(undefined);
+
+        try {
+          await service.findOne(courseId);
+        } catch (error) {
+          expect(error).toBeInstanceOf(NotFoundException);
+          expect(error.message).toEqual(`Course ID ${courseId} not found`);
+        }
+      });
     });
   });
 });
