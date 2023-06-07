@@ -10,9 +10,9 @@ export const databaseProviders = [
         port: 5432,
         username: 'postgres',
         password: 'docker',
-        database: 'cursonestjs',
-        entities: [__dirname + '/../**/*.entityjs'],
-        synchronize: true,
+        database: 'postgres',
+        entities: [__dirname + '/../**/*.entity.js'],
+        synchronize: false,
       });
 
       return dataSource.initialize();
