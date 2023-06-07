@@ -37,7 +37,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
-    "typeorm": "^0.2.34",
+    "typeorm": "^0.3.7",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
